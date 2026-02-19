@@ -16,6 +16,19 @@ The implementation closely follows a fixed project specification and marking rub
 
 **Note:** This project is not intended to produce a profitable trading strategy. Instead, it serves as a foundation for future work involving improved reward design, longer training horizons, richer state representations, and more realistic backtesting assumptions.
 
+## Practical RL Challenges
+During development, many non-trivial RL dynamics emerged:
+- Highly correlated states caused Q-values to collapse toward uniformity.
+- Deterministic argmax selection led to action locked.
+- Sequential replay sampling weakened learning signal.
+
+To address this, the following improvements were implemented:
+- Inventory-aware reward shaping to encourage valid trading cycles.
+- Gaussian Q-value noise during action selection to break near-ties.
+- Randomized minibatch sampling for stable DQN updates.
+
+These changes significantly improved policy diversity and training stability while remaining consistent with the project constraints.
+
 ## Data Preparation
 
 ### Market Data
